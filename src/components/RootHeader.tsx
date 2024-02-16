@@ -16,10 +16,6 @@ const data: Item[] = [
     title: 'Projects',
     href: '/projects',
   },
-  {
-    title: 'About',
-    href: '/about',
-  }
 ]
 
 export const RootHeader = () => {
