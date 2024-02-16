@@ -19,10 +19,8 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <main className="flex flex-col justify-between">
-          <div className="px-24">
-            <RootHeader />
-            {children}
-          </div>
+          <RootHeader />
+          {children}
         </main>
       </body>
     </html>
