@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react';
 import '@/app/globals.css';
 import Image from "next/image";
 import { useScroll } from '@/hooks/useScroll';
+import Icon from "@/images/icon.png"
+
 type Item = {
   title: string;
   href: string;
@@ -34,20 +36,23 @@ export const RootHeader = () => {
     <header className={`w-full fixed backdrop-blur-xl h-20 items-center flex z-[500]`}>
       <div className={`flex-row flex h-full justify-between w-full opacity-0 transform transition-all duration-500 px-6 ${scrollY > 1 && 'opacity-100'}`}>
         <div className='h-full flex justify-center items-center'>
-          <a href='/' className={`flex`}>
-            <h1 className='text-2xl font-bold text-black'>tnmod</h1>
-            <h6 className='text-xs font-light text-black'>.dev</h6>
+          <a href='/' className={`flex  h-full`}>
+            {/* <h1 className='text-2xl font-bold text-black'>tnmod</h1>
+            <h6 className='text-xs font-light text-black'>.dev</h6> */}
+            <Image
+              src={Icon}
+              alt='icon'
+              className='h-20 w-20'
+            />
           </a>
         </div>
         {
           scrollY > 1 && (
-            <div>
-              <nav className='hidden z-[500] sm:flex'>
-                <ul className="flex flex-row gap-6">
-                  {items}
-                </ul>
-              </nav>
-            </div>
+            <nav className='hidden z-[500] sm:flex'>
+              <ul className="flex flex-row gap-6">
+                {items}
+              </ul>
+            </nav>
           )
         }
       </div>

@@ -13,6 +13,10 @@ export default function Home() {
   const { devTools } = useImage();
   let MyName = ["t", "n", "m", "o", "d"]
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className="flex min-h-screen flex-col justify-between bg-white">
 
@@ -23,15 +27,16 @@ export default function Home() {
               {
                 MyName.map((item, index) => {
                   return (
-                    <motion.p
+                    <motion.div
                       key={index}
-                      className={styles.text}
                       initial={{ opacity: 0, translateY: -100 }}
                       animate={{ opacity: 1, translateY: 0 }}
                       transition={{ duration: 0.3, delay: index * 0.2 }}
                     >
-                      {item}
-                    </motion.p>
+                      <p className={styles.text}>
+                        {item}
+                      </p>
+                    </motion.div>
                   )
                 })
               }
