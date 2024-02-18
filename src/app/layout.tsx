@@ -16,9 +16,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className={`scrollbar-none`}>
       <body className={inter.className}>
-        <main className="flex flex-col justify-between">
+        <main className="flex flex-col justify-between scrollbar-thin scrollbar-track-red-800">
           <RootHeader />
           {children}
         </main>

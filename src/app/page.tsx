@@ -17,9 +17,11 @@ export default function Home() {
     window.scrollTo(0, 0);
   }, []);
 
+  console.log(scrollY);
+  
+
   return (
     <div className="flex min-h-screen flex-col justify-between bg-white">
-
       <div className={`bg-white h-screen flex flex-col transform transition-all pt-32`}>
         <div className={`z-50 h-full w-full top-0 bg-[#ffe4c4] absolute items-center justify-center flex flex-col duration-500 ${scrollY > 1 && "-translate-y-full "}`}>
           <div className={`flex ${scrollY > 1}`}>
@@ -49,7 +51,7 @@ export default function Home() {
             scrollY > 1 && (
               <div className=" 2xl:items-center flex flex-col bg-white">
                 <div className="lg:h-32 h-72 w-full" />
-                <div className=" md:flex flex-row  min-h-screen xl:justify-center 2xl:max-w-screen-xl">
+                <div className=" md:flex flex-row min-h-screen xl:justify-center 2xl:max-w-screen-xl">
                   <div className="flex-1 xl:flex-none hidden lg:flex h-full px-6 justify-center">
                     <motion.div
                       initial={{ opacity: 0, translateY: -100 }}
@@ -132,10 +134,6 @@ export default function Home() {
           }
         </div>
       </div>
-
-
-
-
     </div >
   );
 }
