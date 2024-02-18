@@ -31,7 +31,7 @@ export const RootHeader = () => {
   })
 
   return (
-    <header className={`w-full fixed backdrop-blur-xl h-20 items-center flex z-50`}>
+    <header className={`w-full fixed backdrop-blur-xl h-20 items-center flex z-[500]`}>
       <div className={`flex-row flex h-full justify-between w-full opacity-0 transform transition-all duration-500 px-6 ${scrollY > 1 && 'opacity-100'}`}>
         <div className='h-full flex justify-center items-center'>
           <a href='/' className={`flex`}>
@@ -39,20 +39,29 @@ export const RootHeader = () => {
             <h6 className='text-xs font-light text-black'>.dev</h6>
           </a>
         </div>
-        <nav className='hidden md:flex'>
-          <ul className="flex flex-row gap-2">
-            {items}
-          </ul>
-        </nav>
-
+        {
+          scrollY > 1 && (
+            <div>
+              <nav className='hidden z-[500] sm:flex'>
+                <ul className="flex flex-row gap-6">
+                  {items}
+                </ul>
+              </nav>
+            </div>
+          )
+        }
       </div>
-      <div className={`flex h-full absolute w-full justify-center items-center transform transition-all duration-500 ${scrollY > 1 && 'opacity-0'}`}>
-        <nav >
-          <ul className="flex flex-row gap-2">
-            {items}
-          </ul>
-        </nav>
-      </div>
+      {
+        !(scrollY > 1) && (
+          <div className={`flex h-full absolute w-full justify-center items-center transform transition-all z-[500] duration-500 ${scrollY > 1 && 'opacity-0'}`}>
+            <nav >
+              <ul className="flex flex-row gap-2">
+                {items}
+              </ul>
+            </nav>
+          </div>
+        )
+      }
     </header>
   );
 }
