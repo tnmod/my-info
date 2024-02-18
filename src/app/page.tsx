@@ -69,7 +69,7 @@ export default function Home() {
                           animate={scrollY > 1 ? { opacity: 1, translateY: 0 } : { opacity: 0, translateY: -100 }}
                           transition={{ duration: 0.3, delay: 0.4 }}
                         >
-                          Hello, I'm Nguyen Phu Tin, a dedicated mobile developer with a passion for crafting seamless and user-friendly applications. My expertise lies in React Native, allowing me to build versatile and cross-platform mobile solutions for both iOS and Android.
+                          {"Hello, I'm Nguyen Phu Tin, a dedicated mobile developer with a passion for crafting seamless and user-friendly applications. My expertise lies in React Native, allowing me to build versatile and cross-platform mobile solutions for both iOS and Android."}
                         </motion.p>
                         <motion.p
                           className="flex-1 text-black text-base md:text-lg lg:text-xl xl:text-2xl"
@@ -77,7 +77,7 @@ export default function Home() {
                           animate={scrollY > 1 ? { opacity: 1, translateY: 0 } : { opacity: 0, translateY: -100 }}
                           transition={{ duration: 0.3, delay: 0.4 }}
                         >
-                          Beyond mobile development, I'm well-versed in Next.js, showcasing my versatility in web development. Additionally, I have a working knowledge of MySQL, adding a database layer to my skill set.
+                          {"Beyond mobile development, I'm well-versed in Next.js, showcasing my versatility in web development. Additionally, I have a working knowledge of MySQL, adding a database layer to my skill set."}
                         </motion.p>
                       </div>
                       <div className="flex-col flex-1 flex gap-4 ">
@@ -87,7 +87,7 @@ export default function Home() {
                           animate={scrollY > 1 ? { opacity: 1, translateY: 0 } : { opacity: 0, translateY: -100 }}
                           transition={{ duration: 0.3, delay: 0.6 }}
                         >
-                          With over a year of hands-on experience in the field, I've had the opportunity to contribute to various projects, honing my skills and staying abreast of the latest industry trends. My commitment to delivering high-quality, efficient code is at the core of my professional ethos.
+                          {"With over a year of hands-on experience in the field, I've had the opportunity to contribute to various projects, honing my skills and staying abreast of the latest industry trends. My commitment to delivering high-quality, efficient code is at the core of my professional ethos."}
                         </motion.p>
                         <motion.p
                           className="text-black text-base md:text-lg lg:text-xl xl:text-2xl"
@@ -95,7 +95,7 @@ export default function Home() {
                           animate={scrollY > 1 ? { opacity: 1, translateY: 0 } : { opacity: 0, translateY: -100 }}
                           transition={{ duration: 0.3, delay: 0.8 }}
                         >
-                          I'm excited about the intersection of mobile and web technologies, and I'm always eager to take on new challenges. Let's build something great together!
+                          {"I'm excited about the intersection of mobile and web technologies, and I'm always eager to take on new challenges. Let's build something great together!"}
                         </motion.p>
                       </div>
                     </div>
