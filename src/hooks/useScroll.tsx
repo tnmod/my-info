@@ -1,15 +1,11 @@
 import { useEffect, useState } from "react";
 
-export const useScroll = ({ offSet }: { offSet: number }) => {
-  const [isActive, setIsActive] = useState(false);
+export const useScroll = () => {
+  const [scrollY, setScrollY] = useState(0);
+
   useEffect(() => {
     const handleScroll = () => {
-      const scrollPosition = window.scrollY;
-      if (scrollPosition > offSet) {
-        setIsActive(true);
-      } else {
-        setIsActive(false);
-      }
+      setScrollY(window.scrollY);
     };
     window.addEventListener('scroll', handleScroll);
     return () => {
@@ -18,6 +14,6 @@ export const useScroll = ({ offSet }: { offSet: number }) => {
   }, []);
 
   return {
-    isActive,
+    scrollY
   };
 }

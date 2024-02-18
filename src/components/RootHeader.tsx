@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react';
 import '@/app/globals.css';
 import Image from "next/image";
+import { useScroll } from '@/hooks/useScroll';
 type Item = {
   title: string;
   href: string;
@@ -19,7 +20,7 @@ const data: Item[] = [
 ]
 
 export const RootHeader = () => {
-  const [isDivHidden, setIsDivHidden] = useState(false);
+  const { scrollY } = useScroll();
 
   const items = data.map((item, index) => {
     return (
@@ -29,29 +30,9 @@ export const RootHeader = () => {
     )
   })
 
-  const handleToggle = () => {
-    console.log('toggled');
-  }
-
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollPosition = window.scrollY;
-      if (scrollPosition > 40) {
-        setIsDivHidden(true);
-      } else {
-        setIsDivHidden(false);
-      }
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
-
   return (
     <header className={`w-full fixed backdrop-blur-xl h-20 items-center flex z-50`}>
-      <div className={`flex-row flex h-full justify-between w-full opacity-0 transform transition-all duration-500 px-6 ${isDivHidden && 'opacity-100'}`}>
+      <div className={`flex-row flex h-full justify-between w-full opacity-0 transform transition-all duration-500 px-6 ${scrollY > 1 && 'opacity-100'}`}>
         <div className='h-full flex justify-center items-center'>
           <a href='/' className={`flex`}>
             <h1 className='text-2xl font-bold text-black'>tnmod</h1>
@@ -65,7 +46,7 @@ export const RootHeader = () => {
         </nav>
 
       </div>
-      <div className={`flex h-full absolute w-full justify-center items-center transform transition-all duration-500 ${isDivHidden && 'opacity-0'}`}>
+      <div className={`flex h-full absolute w-full justify-center items-center transform transition-all duration-500 ${scrollY > 1 && 'opacity-0'}`}>
         <nav >
           <ul className="flex flex-row gap-2">
             {items}
