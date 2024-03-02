@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { RootHeader } from "@/components/RootHeader";
+import { SmoothScroll } from "@/components/SmoothScroll";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,10 +18,11 @@ export default function RootLayout({
   return (
     <html lang="en" className={`scrollbar-none`}>
       <body className={inter.className}>
-        <main className="flex flex-col justify-between scrollbar-thin scrollbar-track-red-800">
-          <RootHeader />
-          {children}
-        </main>
+        <SmoothScroll>
+          <main className="flex flex-col justify-between scrollbar-thin scrollbar-track-red-800 scroll-smooth ">
+            {children}
+          </main>
+        </SmoothScroll>
       </body>
     </html>
   );

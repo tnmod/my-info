@@ -1,23 +1,53 @@
+'use client'
+import { ScrollView } from "@/components/ScrollView";
+import { ScrollingText } from "@/components/ScrollingText";
+import { useViewport } from "@/hooks/useViewport";
+import { useEffect, useState } from "react";
+
 
 export default function Projects() {
+
+  const [offset, setOffset] = useState(0);
+  const { viewportHeight } = useViewport();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setOffset(window.scrollY);
+    }
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    }
+  }, []);
+
   return (
-    <div className="w-full">
-      <a
-        href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-        className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <h2 className={`mb-3 text-2xl font-semibold`}>
-          Docs{" "}
-          <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-            -&gt;
-          </span>
-        </h2>
-        <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-          Find in-depth information about Next.js features and API.
-        </p>
-      </a>
+    <div className="w-full flex flex-col flex-1 scroll-smooth md:scroll-auto">
+      <div className="">
+        <div className="bg-orange-500 h-screen p-32  ">
+
+        </div>
+        <div className="bg-red-500 h-screen p-32">
+
+        </div>
+        <div className="bg-blue-500 h-screen p-32">
+
+        </div>
+      </div>
+
+      <ScrollView offset={offset} height={viewportHeight} count={3} start={viewportHeight * 3}>
+        <div className="w-full h-full flex flex-col justify-center items-center">
+          <h1>alllll</h1>
+        </div>
+      </ScrollView>
+
+      <div>
+        <div className="bg-red-500 h-screen p-32">
+
+        </div>
+        <div className="bg-blue-500 h-screen p-32">
+
+        </div>
+      </div>
     </div>
   );
 }
