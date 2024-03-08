@@ -99,10 +99,10 @@ export default function Home() {
         <div className="w-96 h-96 md:w-3/6  bg-red-400 rounded-full absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-gradient-to-b from-slate-300 via-slate-100 to-slate-50" />
       </div>
 
+      <MarqueeText keyWords={["React", "Next.js", "TailwindCSS", "Framer Motion", "TypeScript", "Unity", "C#", "JavaScript", "HTML", "CSS", "Node.js", "Express.js", "MongoDB", "Firebase", "Git", "GitHub"]} />
 
       {/*  About  */}
-      <div id={"about"} className="h-screen w-screen">
-        <MarqueeText keyWords={["React", "Next.js", "TailwindCSS", "Framer Motion", "TypeScript", "Unity", "C#", "JavaScript", "HTML", "CSS", "Node.js", "Express.js", "MongoDB", "Firebase", "Git", "GitHub"]} />
+      <div id={"about"} className="h-screen w-screen bg-red-200">
       </div>
 
 
