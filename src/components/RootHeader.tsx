@@ -4,69 +4,60 @@ import '@/app/globals.css';
 import Image from "next/image";
 import { useScroll } from '@/hooks/useScroll';
 import Icon from "@/images/icon.png"
-
+//https://colorhunt.co/palette/b5c0d0ccd3caf5e8ddeed3d9
 type Item = {
   title: string;
   href: string;
 }
 
-const data: Item[] = [
+const Index: Item[] = [
   {
-    title: 'Home',
-    href: '/',
+    title: 'About',
+    href: '#about',
   },
   {
-    title: 'Projects',
-    href: '/projects',
+    title: 'Skills',
+    href: '#skills',
   },
+  {
+    title: 'Works',
+    href: '#works',
+  },
+  {
+    title: 'Contact',
+    href: '#contact',
+  }
 ]
 
 export const RootHeader = () => {
   const { scrollY } = useScroll();
 
-  const items = data.map((item, index) => {
+  const items = Index.map((item, index) => {
     return (
-      <li key={index} className='group/item py-4 h-full flex justify-center items-center'>
-        <a href={item.href} className='group-hover/item:scale-125 transition-all duration-200 text-base text-black font-bold'>{item.title}</a>
+      <li key={index} className='group/item py-0.5 h-full flex justify-center items-center cursor-pointer'>
+        <a
+          className='group-hover/item:-translate-x-3 transition-all duration-200 text-lg text-slate-700 font-medium'
+          onClick={(e) => {
+            e.preventDefault();
+            document.querySelector(item.href)?.scrollIntoView({ behavior: 'smooth' });
+          }}
+        >
+          {item.title}
+        </a>
       </li>
     )
   })
 
   return (
-    <header className={`w-full fixed backdrop-blur-xl h-20 items-center flex z-[500]`}>
-      <div className={`flex-row flex h-full justify-between w-full opacity-0 transform transition-all duration-500 px-6 ${scrollY > 1 && 'opacity-100'}`}>
-        <div className='h-full flex justify-center items-center'>
-          <a href='/' className={`flex  h-full`}>
-            {/* <h1 className='text-2xl font-bold text-black'>tnmod</h1>
-            <h6 className='text-xs font-light text-black'>.dev</h6> */}
-            <Image
-              src={Icon}
-              alt='icon'
-              className='h-20 w-20'
-            />
-          </a>
-        </div>
-        {
-          scrollY > 1 && (
-            <nav className='hidden z-[500] sm:flex'>
-              <ul className="flex flex-row gap-6">
-                {items}
-              </ul>
-            </nav>
-          )
-        }
+    <header className={`w-full items-start flex justify-between p-5 bg-transparent`}>
+      <div className={"w-12 h-12 bg-slate-500"}>
+        <Image src={Icon} alt="icon" />
       </div>
-      {
-        !(scrollY > 1) && (
-          <div className={`flex h-full absolute w-full justify-center items-center transform transition-all z-[500] duration-500 ${scrollY > 1 && 'opacity-0'}`}>
-            <nav >
-              <ul className="flex flex-row gap-2">
-                {items}
-              </ul>
-            </nav>
-          </div>
-        )
-      }
+      <div className={"w-auto h-auto  flex flex-col"}>
+        <ul className='flex flex-col items-end'>
+          {items}
+        </ul>
+      </div>
     </header>
   );
 }

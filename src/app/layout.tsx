@@ -1,9 +1,14 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Roboto } from "next/font/google";
 import "./globals.css";
 import { SmoothScroll } from "@/components/SmoothScroll";
 
-const inter = Inter({ subsets: ["latin"] });
+const roboto = Roboto({
+  weight: ['400', '700'],
+  style: ['normal', 'italic'],
+  subsets: ['latin'],
+  display: 'swap',
+});
 
 export const metadata: Metadata = {
   title: "Nguyễn Phú Tín - tnmod.dev",
@@ -17,11 +22,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`scrollbar-none`}>
-      <body className={inter.className}>
+      <body className={roboto.className}>
         <SmoothScroll>
-          <main className="flex flex-col justify-between scrollbar-thin scrollbar-track-red-800 scroll-smooth ">
-            {children}
-          </main>
+          {children}
         </SmoothScroll>
       </body>
     </html>
