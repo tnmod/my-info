@@ -21,7 +21,7 @@ export const MarqueeText = (props: MarqueeProps) => {
             <>
                 {
                     Array.from({ length: count }).map((_, i) => (
-                        <div className="relative flex overflow-x-hidden">
+                        <div key={i} className="relative flex overflow-x-hidden">
                             <div className="py-12 animate-marquee whitespace-nowrap">
                                 <span style={props.style} className="text-4xl mx-4">{children}</span>
                             </div>
@@ -40,7 +40,7 @@ export const MarqueeText = (props: MarqueeProps) => {
             <>
                 {
                     count ? Array.from({ length: count }).map((_, i) => (
-                        <div className="relative flex overflow-x-hidden">
+                        <div key={i} className="relative flex overflow-x-hidden">
                             <div className="py-12 animate-marquee whitespace-nowrap">
                                 {keyWords.map((item, index) => (
                                     <span style={props.style} key={index} className="text-4xl mx-4">{item}</span>
