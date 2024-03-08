@@ -60,7 +60,7 @@ export default function Home() {
             initial="initial"
             animate="animate"
           >
-            HI THERE, I'M
+            {"HI THERE, I'M"}
           </motion.p>
           <motion.p
             className="font-extrabold text-neutral-700 z-10"
