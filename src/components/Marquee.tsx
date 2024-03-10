@@ -45,7 +45,7 @@ export const MarqueeText = (props: MarqueeProps) => {
       <>
         {
           count ? Array.from({ length: count }).map((_, i) => (
-            <div className="relative flex overflow-x-hidden">
+            <div key={i} className="relative flex overflow-x-hidden">
               <div className=" animate-marquee flex-nowrap flex">
                 {keyWords.map((item, index) => (
                   <div key={index} className="flex items-center flex-row gap-8  px-4">
