@@ -29,15 +29,15 @@ export const useViewport = () => {
   }, [viewportWidth, viewportHeight]);
 
   useEffect(() => {
-    if (viewportWidth < 640) {
+    if (viewportWidth <= 640) {
       setContainer("sm");
-    } else if (viewportWidth < 768) {
+    } else if (viewportWidth <= 768) {
       setContainer("md");
-    } else if (viewportWidth < 1024) {
+    } else if (viewportWidth <= 1024) {
       setContainer("lg");
-    } else if (viewportWidth < 1280) {
+    } else if (viewportWidth <= 1280) {
       setContainer("xl");
-    } else if (viewportWidth < 1536) {
+    } else if (viewportWidth <= 1536) {
       setContainer("2xl");
     } else {
       setContainer("none");
