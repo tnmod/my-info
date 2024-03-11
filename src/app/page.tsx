@@ -12,6 +12,7 @@ import Typewriter from 'typewriter-effect';
 import { ParallaxText } from "@/components/ParallaxText";
 import { MarqueeText } from "@/components/Marquee";
 import { FrameworksList } from "@/constants/Keywords";
+import { AnimatedText } from "@/components/AnimatedText";
 //bg-[#B5C0D0]
 export default function Home() {
   const { scrollY } = useScroll();
@@ -20,12 +21,13 @@ export default function Home() {
 
   const generateTextVariants = (translateX: number): Variants => ({
     initial: {
-      fontSize: "48px"
+      fontSize: "48px",
+      // translateY: -translateX * 0.8,
     },
     animate: {
       fontSize:
-        viewportWidth * 0.05 > 96
-          ? "96px"
+        viewportWidth * 0.05 > 166
+          ? "166px"
           : viewportWidth * 0.05 < 42
             ? "42px"
             : viewportWidth * 0.05 + "px",
@@ -38,117 +40,147 @@ export default function Home() {
     }
   });
 
+  const initVariants: Variants = {
+    initial: {
+      translateY: "0",
+    },
+    animate: {
+      translateY: "-100%",
+      transition: {
+        duration: 1,
+        ease: "easeInOut",
+        delay: 1.5
+      }
+    }
+  }
+
   useEffect(() => {
     const time = setTimeout(() => {
       setActive(true);
     }, 1000);
-    return () => clearTimeout(time);
+
+    return () => {
+      clearTimeout(time)
+    };
+
   }, []);
 
 
   return (
     <main className="scrollbar-thin scrollbar-track-red-800 scroll-smooth">
-      <RootHeader />
+      <motion.div
+        variants={initVariants}
+        initial="initial"
+        animate="animate"
+        className="fixed w-screen h-screen bg-black top-0 left-0 flex flex-col items-center justify-center z-50">
+        <AnimatedText text="Nguyễn Phú Tín" />
+        <AnimatedText text="© Folio 2024" />
+      </motion.div>
       {/*  /  */}
-      <div
-        className="relative bg-white"
-        style={{
-          transform: `translateY(${scrollY * 0.5}px)`,
-          zIndex: -1,
-        }}>
+      <motion.div
+        initial={{ opacity: 0.4 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5, ease: "easeInOut", delay: 2 }} >
+        <RootHeader />
         <div
-          className="relative flex h-screen w-screen flex-col justify-end sm:justify-center sm:items-center items-start bg-white p-5">
-          <div className="flex flex-col z-10">
-            <motion.p
-              className="font-extrabold text-neutral-700"
-              variants={generateTextVariants(-50)}
-              initial="initial"
-              animate="animate"
-            >
-              {"HI THERE, I'M"}
-            </motion.p>
-            <motion.p
-              className="font-extrabold text-neutral-700 z-10"
-              variants={generateTextVariants(50)}
-              initial="initial"
-              animate="animate"
-            >
-              TIN NGUYEN.
-            </motion.p>
+          className="relative bg-white"
+          style={{
+            transform: `translateY(${scrollY * 0.5}px)`,
+            zIndex: -1,
+          }}>
+          <div className="relative flex h-screen w-screen flex-col justify-end sm:justify-center sm:items-center items-start bg-white p-5">
+
+            <div className="flex flex-col z-10">
+              {/* <motion.p
+                className="font-extrabold text-neutral-700"
+                variants={generateTextVariants(-50)}
+                initial="initial"
+                animate="animate"
+              >
+                {"HI THERE, I'M"}
+              </motion.p>
+              <motion.p
+                className="font-extrabold text-neutral-700 z-10"
+                variants={generateTextVariants(50)}
+                initial="initial"
+                animate="animate"
+              >
+                TIN NGUYEN.
+              </motion.p> */}
+              <AnimatedText text="HI THERE, I'M" textTranform textColor="#00000099" textTranslateX={-50} />
+              <AnimatedText text="TIN NGUYEN." textTranform textColor="#00000099" textTranslateX={50} />
+            </div>
+
+            <div className="sm:absolute sm:bottom-4 sm:left-4 z-10">
+              <Typewriter
+                options={{
+                  loop: true,
+                  cursor: "_",
+                  delay: 100,
+                  deleteSpeed: 50,
+                  wrapperClassName: "text-slate-700 font-bold text-2xl bg-gradient-to-r from-[#009bff] via-[#093c79] to-[#000124] inline-block bg-clip-text text-transparent",
+                  cursorClassName: "text-slate-700 font-bold text-2xl ",
+                }}
+                onInit={(typewriter) => {
+                  typewriter.typeString('Mobile Developer')
+                    .pauseFor(2000)
+                    .deleteAll()
+                    .typeString('Unity Developer')
+                    .pauseFor(2000)
+                    .deleteAll()
+                    .typeString('Web Developer')
+                    .pauseFor(2000)
+                    .start();
+                }}
+              />
+            </div>
+            {/** Circle center */}
+            <div className="w-96 h-96 md:w-3/6  bg-red-400 rounded-full absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-gradient-to-b from-slate-300 via-slate-100 to-slate-50" />
           </div>
+          <div className="h-24 w-screen" />
+        </div>
 
-          <div className="sm:absolute sm:bottom-4 sm:left-4 z-10">
-            <Typewriter
-              options={{
-                loop: true,
-                cursor: "_",
-                delay: 100,
-                deleteSpeed: 50,
-                wrapperClassName: "text-slate-700 font-bold text-2xl bg-gradient-to-r from-[#009bff] via-[#093c79] to-[#000124] inline-block bg-clip-text text-transparent",
-                cursorClassName: "text-slate-700 font-bold text-2xl ",
-              }}
-              onInit={(typewriter) => {
-                typewriter.typeString('Mobile Developer')
-                  .pauseFor(2000)
-                  .deleteAll()
-                  .typeString('Unity Developer')
-                  .pauseFor(2000)
-                  .deleteAll()
-                  .typeString('Web Developer')
-                  .pauseFor(2000)
-                  .start();
-              }}
-            />
+
+        {/*  About  */}
+        <div id={"about"} className="">
+          <div className="bg-black rounded-tl-3xl rounded-tr-3xl h-16 w-screen">
+
           </div>
-          {/** Circle center */}
-          <div className="w-96 h-96 md:w-3/6  bg-red-400 rounded-full absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-gradient-to-b from-slate-300 via-slate-100 to-slate-50" />
+          <div className="h-screen w-screen bg-black ">
+
+          </div>
         </div>
-        <div className="h-24 w-screen" />
-      </div>
-
-
-
-      {/*  About  */}
-      <div id={"about"} className="">
-        <div className="bg-black rounded-tl-3xl rounded-tr-3xl h-16 w-screen">
+        <div className="w-screen bg-red-200">
+          <MarqueeText keyWords={FrameworksList} />
+        </div>
+        {/*  Skills  */}
+        <div id="skills" className="h-screen w-screen bg-red-800">
 
         </div>
-        <div className="h-screen w-screen bg-black ">
+
+        {/*  Works  */}
+        <div id="works" className="h-screen w-screen bg-zinc-600">
 
         </div>
-      </div>
-
-      <div className="w-screen bg-red-200">
-        <MarqueeText keyWords={FrameworksList} />
-      </div>
-      {/*  Skills  */}
-      <div id="skills" className="h-screen w-screen bg-red-800">
-
-      </div>
 
 
-      {/*  Works  */}
-      <div id="works" className="h-screen w-screen bg-zinc-600">
+        {/*  Contact  */}
+        <div id="contact" className="h-screen w-screen bg-orange-500">
 
-      </div>
+        </div>
 
-
-      {/*  Contact  */}
-      <div id="contact" className="h-screen w-screen bg-orange-500">
-
-      </div>
-
-      {
-        scrollY > 100 && (
-          <button
-            onClick={() => {
-              window.scrollTo({ top: 0, behavior: "smooth" });
-            }}
-            className="p-3 rounded-xl backdrop-blur-xl w-16 h-16 fixed bottom-5 right-5 border-2 border-[#00000010]">
-            <p className="text-white ">UP</p>
-          </button>
-        )
-      }
+        {
+          scrollY > 100 && (
+            <button
+              onClick={() => {
+                window.scrollTo({ top: 0, behavior: "smooth" });
+              }}
+              className="p-3 rounded-xl backdrop-blur-xl w-16 h-16 fixed bottom-5 right-5 border-2 border-[#00000010]">
+              <p className="text-white ">UP</p>
+            </button>
+          )
+        }
+      </motion.div>
     </main >
   );
 }
