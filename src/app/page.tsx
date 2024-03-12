@@ -1,6 +1,7 @@
 "use client";
 import styles from "./styles.module.css";
 import Image from "next/image";
+import MyImage from "@/images/IMG_0619.jpg";
 import { useCallback, useEffect, useState } from "react";
 import { useViewport } from "@/hooks/useViewport";
 import { useImage } from "@/hooks/useImage";
@@ -13,6 +14,7 @@ import { MarqueeText } from "@/components/Marquee";
 import { FrameworksList } from "@/constants/Keywords";
 import { AnimatedText } from "@/components/AnimatedText";
 import { useScroll } from "@/hooks/useScroll";
+import { Scrollbar } from "@/components/Scrollbar";
 //bg-[#B5C0D0]
 export default function Home() {
   const { scrollY } = useScroll();
@@ -66,7 +68,8 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="scrollbar-thin scrollbar-track-red-800 scroll-smooth">
+    <main className="scroll-smooth">
+      {/* <Scrollbar /> */}
       <motion.div
         variants={initVariants}
         initial="initial"
@@ -87,7 +90,7 @@ export default function Home() {
           className="relative bg-white"
           initial={{ translateY: "0" }}
           animate={{ translateY: scrollY * 0.6 }}
-          transition={{ duration: 0, ease: "easeInOut" }}
+          transition={{ duration: 0.01, ease: "easeOut" }}
           style={{
             zIndex: -1,
           }}
@@ -168,14 +171,28 @@ export default function Home() {
           </div>
           <div className="h-24 w-screen" />
         </motion.div>
-        <div className="bg-black rounded-tl-3xl rounded-tr-3xl h-16 w-screen"></div>
+
         {/*  About  */}
-        <div id={"about"} className="">
-          <div className="h-screen w-screen bg-black "></div>
+        <div className="bg-black rounded-tl-3xl rounded-tr-3xl ">
+          <div className="h-16 w-screen"></div>
+          <div id={"about"} className="h-screen w-screen bg-black ">
+            <AnimatedText
+              text="ABOUT ME."
+              delay={0.04}
+              duration={0.6}
+              containerDelay={0.1}
+              variants="large"
+            />
+            <div className="h-5 w-screen">
+              <Image src={MyImage} alt="err" priority />
+            </div>
+          </div>
         </div>
+
         <div className="w-screen bg-red-200">
           <MarqueeText keyWords={FrameworksList} />
         </div>
+
         {/*  Skills  */}
         <div id="skills" className="h-screen w-screen bg-red-800"></div>
 
@@ -199,12 +216,6 @@ export default function Home() {
         >
           <p className="text-white">UP</p>
         </motion.button>
-      </motion.div>
-      <motion.div
-        animate={{ scale: scrollY * 0.006 }}
-        className="fixed top-0 left-0 w-screen h-screen z-50 flex justify-center items-center"
-      >
-        <p className="text-8xl to-black">Hello</p>
       </motion.div>
     </main>
   );

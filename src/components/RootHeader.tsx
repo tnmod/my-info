@@ -57,7 +57,7 @@ export const RootHeader = () => {
           <motion.div
             initial={{ opacity: 0, translateY: 200 }}
             animate={{ opacity: 1, translateY: 0 }}
-            transition={{ duration: 1, ease: "easeInOut", delay: 1.6 }}
+            transition={{ duration: 1, ease: "easeInOut", delay: 1.8 }}
             className={"w-auto h-auto flex flex-col"}
           >
             <ul className="flex flex-col items-end">

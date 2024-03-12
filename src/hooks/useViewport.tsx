@@ -1,10 +1,15 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
 export const useViewport = () => {
   const [viewportHeight, setViewportHeight] = useState(0);
   const [viewportWidth, setViewportWidth] = useState(0);
-  const [orientation, setOrientation] = useState<'portrait' | 'landscape'>('portrait');
-  const [container, setContainer] = useState<"sm" | "md" | "lg" | "xl" | "2xl" | "none">("none");
+  const [orientation, setOrientation] = useState<"portrait" | "landscape">(
+    "portrait"
+  );
+  const [container, setContainer] = useState<
+    "sm" | "md" | "lg" | "xl" | "2xl" | "none"
+  >("none");
+  const [totalHeight, setTotalHeight] = useState(0);
 
   useEffect(() => {
     const handleResize = () => {
@@ -12,19 +17,19 @@ export const useViewport = () => {
       setViewportWidth(window.innerWidth);
     };
 
-    window.addEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
     handleResize();
 
     return () => {
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener("resize", handleResize);
     };
   }, []);
 
   useEffect(() => {
     if (viewportWidth > viewportHeight) {
-      setOrientation('landscape');
+      setOrientation("landscape");
     } else {
-      setOrientation('portrait');
+      setOrientation("portrait");
     }
   }, [viewportWidth, viewportHeight]);
 
@@ -44,10 +49,31 @@ export const useViewport = () => {
     }
   }, [viewportWidth]);
 
+  useEffect(() => {
+    const calculateTotalHeight = () => {
+      const elements = document.body.getElementsByTagName("*");
+      let totalHeight = 0;
+
+      for (let i = 0; i < elements.length; i++) {
+        totalHeight += elements[i].offsetHeight;
+      }
+      setTotalHeight(totalHeight);
+    };
+
+    calculateTotalHeight();
+
+    window.addEventListener("resize", calculateTotalHeight);
+
+    return () => {
+      window.removeEventListener("resize", calculateTotalHeight);
+    };
+  }, []);
+
   return {
     viewportHeight,
     viewportWidth,
     orientation,
     container,
+    totalHeight
   };
 };
