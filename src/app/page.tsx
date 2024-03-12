@@ -16,6 +16,7 @@ import { AnimatedText } from "@/components/AnimatedText";
 import { useScroll } from "@/hooks/useScroll";
 import { Scrollbar } from "@/components/Scrollbar";
 import { AnimatedView } from "@/components/AnimatedView";
+import { convertToPx } from "@/utils/string.helper";
 //bg-[#B5C0D0]
 export default function Home() {
   const { scrollY } = useScroll();
@@ -33,8 +34,8 @@ export default function Home() {
         viewportWidth * 0.05 > 166
           ? "166px"
           : viewportWidth * 0.05 < 42
-          ? "42px"
-          : viewportWidth * 0.05 + "px",
+            ? "42px"
+            : viewportWidth * 0.05 + "px",
       transition: {
         duration: 0.1,
         ease: "easeInOut",
@@ -176,7 +177,7 @@ export default function Home() {
           <div className="h-16 w-screen" />
           <div
             id={"about"}
-            className="h-screen w-screen bg-black flex flex-col items-center gap-4"
+            className="w-screen bg-black flex flex-col items-center gap-4"
           >
             <div className="w-3/4 opacity-90">
               <AnimatedText
@@ -189,23 +190,20 @@ export default function Home() {
                 textColor="#cbd5e1"
               />
             </div>
-            <div className="w-full relative">
+            <div className="w-full relative flex justify-center items-center">
               <AnimatedView
                 duration={0.5}
                 delay={0.1}
                 translateY={{ from: 50, to: 0 }}
-                className="w-full flex justify-center items-center bg-neutral-500"
+                className="w-full flex justify-center items-center"
                 once
               >
-                <div className="w-1/3">
-                  <Image
-                    src={MyImage}
-                    alt="err"
-                    priority
-                    className="overflow-hidden rounded-2xl"
-                  />
-                  <div className="bg-slate-400 absolute top-0 left-0 w-10 h-full" />
-                </div>
+                <Image
+                  src={MyImage}
+                  alt="err"
+                  priority
+                  className="overflow-hidden rounded-lg object-contain max-w-96 lg:max-w-md"
+                />
               </AnimatedView>
               <div className="absolute -bottom-16 right-0 w-3/4 opacity-90 flex justify-end items-end">
                 <span className="w-2/3">

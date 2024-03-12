@@ -16,6 +16,7 @@ interface AnimatedViewProps {
   once?: boolean;
   amount?: number;
   className?: string | undefined;
+  style?: React.CSSProperties;
 }
 
 export const AnimatedView = ({
@@ -33,6 +34,7 @@ export const AnimatedView = ({
   once = false,
   amount = 0.1,
   className,
+  style
 }: AnimatedViewProps) => {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { amount, once });
@@ -64,6 +66,7 @@ export const AnimatedView = ({
 
   return (
     <motion.div
+      style={style}
       ref={ref}
       initial={"initial"}
       animate={controls}
