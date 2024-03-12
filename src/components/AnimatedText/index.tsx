@@ -117,7 +117,7 @@ export const AnimatedText = ({
       transition={{ staggerChildren: 0.1 }}
       className="overflow-hidden"
     >
-      {text.split("").map((char, index) => (
+      {Array.from(text).map((char, index) => (
         <motion.div
           className="inline-block pt-5 overflow-hidden"
           key={index}
@@ -143,7 +143,7 @@ export const AnimatedText = ({
             animate="animate"
             variants={textTranform ? generateTextVariants(textTranslateX) : {}}
             style={{ color: textColor }}
-            className={`text-black font-bold tracking-wides ${
+            className={`text-black font-bold tracking-wides whitespace-pre ${
               !textTranform && TEXT_SIZE_CLASSES[variants]
             }`}
           >

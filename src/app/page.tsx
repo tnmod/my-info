@@ -15,6 +15,7 @@ import { FrameworksList } from "@/constants/Keywords";
 import { AnimatedText } from "@/components/AnimatedText";
 import { useScroll } from "@/hooks/useScroll";
 import { Scrollbar } from "@/components/Scrollbar";
+import { AnimatedView } from "@/components/AnimatedView";
 //bg-[#B5C0D0]
 export default function Home() {
   const { scrollY } = useScroll();
@@ -88,11 +89,9 @@ export default function Home() {
         <RootHeader />
         <motion.div
           className="relative bg-white"
-          initial={{ translateY: "0" }}
-          animate={{ translateY: scrollY * 0.6 }}
-          transition={{ duration: 0.01, ease: "easeOut" }}
           style={{
             zIndex: -1,
+            translateY: scrollY * 0.6,
           }}
         >
           <div className="relative flex h-screen w-screen flex-col justify-end sm:justify-center sm:items-center items-start bg-white p-5">
@@ -173,18 +172,51 @@ export default function Home() {
         </motion.div>
 
         {/*  About  */}
-        <div className="bg-black rounded-tl-3xl rounded-tr-3xl ">
-          <div className="h-16 w-screen"></div>
-          <div id={"about"} className="h-screen w-screen bg-black ">
-            <AnimatedText
-              text="ABOUT ME."
-              delay={0.04}
-              duration={0.6}
-              containerDelay={0.1}
-              variants="large"
-            />
-            <div className="h-5 w-screen">
-              <Image src={MyImage} alt="err" priority />
+        <div className="bg-black rounded-tl-3xl rounded-tr-3xl">
+          <div className="h-16 w-screen" />
+          <div
+            id={"about"}
+            className="h-screen w-screen bg-black flex flex-col items-center gap-4"
+          >
+            <div className="w-3/4 opacity-90">
+              <AnimatedText
+                once
+                text="ABOUT ME."
+                delay={0.04}
+                duration={0.6}
+                containerDelay={0.1}
+                variants="large"
+                textColor="#cbd5e1"
+              />
+            </div>
+            <div className="w-full relative">
+              <AnimatedView
+                duration={0.5}
+                delay={0.1}
+                translateY={{ from: 50, to: 0 }}
+                className="w-full flex justify-center items-center bg-neutral-500"
+                once
+              >
+                <div className="w-1/3">
+                  <Image
+                    src={MyImage}
+                    alt="err"
+                    priority
+                    className="overflow-hidden rounded-2xl"
+                  />
+                  <div className="bg-slate-400 absolute top-0 left-0 w-10 h-full" />
+                </div>
+              </AnimatedView>
+              <div className="absolute -bottom-16 right-0 w-3/4 opacity-90 flex justify-end items-end">
+                <span className="w-2/3">
+                  With one year of expertise in mobile development, particularly
+                  in React Native. Beyond mobile, I'm adept at crafting web
+                  interfaces using Vite or Next.js. Passionate about creating
+                  visually appealing and optimized user experiences across
+                  platforms. Let's collaborate on unique and impressive
+                  projects!
+                </span>
+              </div>
             </div>
           </div>
         </div>
