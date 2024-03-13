@@ -139,7 +139,7 @@ export const RootHeader = () => {
         className={`fixed top-0 left-0 w-screen h-screen max-w-lg z-40 pr-2 justify-center items-center`}
         initial={{ opacity: 0 }}
         animate={{ opacity: active ? 1 : 0, x: active ? 0 : -100 }}
-        transition={{ duration: 0.3 }}
+        transition={{ duration: 1, ease: "easeOut", velocity: 100 }}
       >
         <div className="w-full h-full bg-black rounded-tr-2xl rounded-br-2xl pl-8 pt-20">
           <ul className="flex flex-col h-full items-start">

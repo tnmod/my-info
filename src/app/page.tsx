@@ -23,7 +23,6 @@ export default function Home() {
 
   const { container, viewportWidth } = useViewport();
   const [active, setActive] = useState<boolean>(false);
-
   const generateTextVariants = (translateX: number): Variants => ({
     initial: {
       fontSize: "48px",
@@ -34,8 +33,8 @@ export default function Home() {
         viewportWidth * 0.05 > 166
           ? "166px"
           : viewportWidth * 0.05 < 42
-            ? "42px"
-            : viewportWidth * 0.05 + "px",
+          ? "42px"
+          : viewportWidth * 0.05 + "px",
       transition: {
         duration: 0.1,
         ease: "easeInOut",
@@ -70,7 +69,7 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="scroll-smooth">
+    <main className="scroll-smooth ">
       {/* <Scrollbar /> */}
       <motion.div
         variants={initVariants}
@@ -91,12 +90,15 @@ export default function Home() {
         <motion.div
           className="relative bg-white"
           style={{
-            zIndex: -1,
             translateY: scrollY * 0.6,
+            zIndex: -1000,
           }}
         >
           <div className="relative flex h-screen w-screen flex-col justify-end sm:justify-center sm:items-center items-start bg-white p-5">
-            <div className="flex flex-col z-10">
+            <div
+              style={{ opacity: 4 - scrollY / 200 }}
+              className="flex flex-col z-10"
+            >
               <AnimatedText
                 text="HI THERE, I'M"
                 textTranform
@@ -173,13 +175,13 @@ export default function Home() {
         </motion.div>
 
         {/*  About  */}
-        <div className="bg-black rounded-tl-3xl rounded-tr-3xl">
+        <div className="bg-neutral-900 rounded-tl-3xl rounded-tr-3xl">
           <div className="h-16 w-screen" />
           <div
             id={"about"}
-            className="w-screen bg-black flex flex-col items-center gap-4"
+            className="w-screen bg-neutral-900 flex flex-col items-center"
           >
-            <div className="w-3/4 opacity-90">
+            <div className="w-2/3 opacity-90 scale-110">
               <AnimatedText
                 once
                 text="ABOUT ME."
@@ -190,44 +192,57 @@ export default function Home() {
                 textColor="#cbd5e1"
               />
             </div>
-            <div className="w-full relative flex justify-center items-center">
+            <div className="w-full relative flex justify-center items-center flex-col mt-16">
               <AnimatedView
                 duration={0.5}
                 delay={0.1}
                 translateY={{ from: 50, to: 0 }}
-                className="w-full flex justify-center items-center"
+                className="w-full flex justify-center items-center mt-2"
                 once
               >
-                <Image
-                  src={MyImage}
-                  alt="err"
-                  priority
-                  className="overflow-hidden rounded-lg object-contain max-w-96 lg:max-w-md"
-                />
+                <div className="w-64 md:w-72 lg:w-96 xl:w-4/6 lg:max-w-lg scale-110 relative">
+                  <Image
+                    src={MyImage}
+                    alt="err"
+                    priority
+                    className="overflow-hidden rounded-lg object-contain"
+                  />
+                  <div className="bg-gradient-to-t from-neutral-900 from-20% via-transparent w-full h-full z-0 absolute top-0 left-0 overflow-hidden rounded-lg" />
+                </div>
               </AnimatedView>
-              <div className="absolute -bottom-16 right-0 w-3/4 opacity-90 flex justify-end items-end">
-                <span className="w-2/3">
-                  With one year of expertise in mobile development, particularly
+              <AnimatedView
+                duration={0.6}
+                delay={0.1}
+                translateY={{ from: -50, to: -100 }}
+                className="w-3/4 opacity-90 absolute -bottom-12 flex justify-end items-end"
+                once
+              >
+                <span className="text-gray-300 w-full max-w-3xl text-base lg:text-2xl md:text-xl xl:text-3xl text-left text-pretty indent-24">
+                  {`With one year of expertise in mobile development, particularly
                   in React Native. Beyond mobile, I'm adept at crafting web
-                  interfaces using Vite or Next.js. Passionate about creating
-                  visually appealing and optimized user experiences across
-                  platforms. Let's collaborate on unique and impressive
-                  projects!
+                  interfaces using ViteJs. Passionate about creating visually
+                  appealing and optimized user experiences across platforms.`}
                 </span>
-              </div>
+              </AnimatedView>
             </div>
           </div>
+          <div className="h-32 w-screen bg-neutral-900" />
         </div>
 
-        <div className="w-screen bg-red-200">
+        {/* <div className="w-screen bg-black">
           <MarqueeText keyWords={FrameworksList} />
-        </div>
+        </div> */}
 
         {/*  Skills  */}
-        <div id="skills" className="h-screen w-screen bg-red-800"></div>
+        <div id="skills" className="h-screen w-screen bg-neutral-900"></div>
 
         {/*  Works  */}
-        <div id="works" className="h-screen w-screen bg-zinc-600"></div>
+        <div id="works" className="bg-zinc-600">
+          <div className="h-32 w-screen bg-neutral-900 rounded-b-3xl" />
+          <div className="h-screen w-screen">
+            <h1>test</h1>
+          </div>
+        </div>
 
         {/*  Contact  */}
         <div id="contact" className="h-screen w-screen bg-orange-500"></div>

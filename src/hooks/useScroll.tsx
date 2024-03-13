@@ -1,19 +1,11 @@
 import { useEffect, useState } from "react";
-
+import { useLenis } from "@studio-freight/react-lenis";
 export const useScroll = () => {
   const [scrollY, setScrollY] = useState(0);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrollY(window.scrollY);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
+  useLenis((lenis) => {
+    setScrollY(lenis.scroll);
   }, []);
-
   return {
-    scrollY
+    scrollY,
   };
-}
+};

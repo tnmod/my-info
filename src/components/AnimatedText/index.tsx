@@ -26,7 +26,8 @@ const TEXT_SIZE_CLASSES = {
   little: "text-base md:text-base lg:text-base 2xl:text-base",
   small: "text-2xl md:text-3xl lg:text-4xl 2xl:text-5xl",
   medium: "text-4xl md:text-5xl lg:text-6xl 2xl:text-7xl",
-  large: "text-6xl md:text-7xl lg:text-8xl 2xl:text-9xl",
+  large: "text-5xl md:text-6xl lg:text-7xl 2xl:text-8xl",
+  extraLarge: "text-6xl md:text-7xl lg:text-8xl 2xl:text-9xl",
 };
 
 export const AnimatedText = ({
@@ -71,7 +72,7 @@ export const AnimatedText = ({
   const generateTextVariants = (translateX: number): Variants => ({
     animate: {
       fontSize: fontSize(),
-      lineHeight: "0.5",
+      lineHeight: "1",
       transition: {
         duration: textScaleDuration,
         ease: "easeInOut",
@@ -143,7 +144,7 @@ export const AnimatedText = ({
             animate="animate"
             variants={textTranform ? generateTextVariants(textTranslateX) : {}}
             style={{ color: textColor }}
-            className={`text-black font-bold tracking-wides whitespace-pre ${
+            className={`text-black font-bold tracking-wides whitespace-pre align-middle ${
               !textTranform && TEXT_SIZE_CLASSES[variants]
             }`}
           >
