@@ -15,6 +15,13 @@
     --background-end-rgb: 0, 0, 0;
   }
 }
+html {
+  font-family: var(--font-inter);
+}
+ 
+span {
+  font-family: var(--font-roboto-mono);
+}
 
 body {
   color: rgb(var(--foreground-rgb));

@@ -192,7 +192,7 @@ export default function Home() {
                 textColor="#cbd5e1"
               />
             </div>
-            <div className="w-full relative flex justify-center items-center flex-col mt-16">
+            <div className="w-full relative flex justify-center items-center flex-col mt-8">
               <AnimatedView
                 duration={0.5}
                 delay={0.1}
@@ -200,7 +200,7 @@ export default function Home() {
                 className="w-full flex justify-center items-center mt-2"
                 once
               >
-                <div className="w-64 md:w-72 lg:w-96 xl:w-4/6 lg:max-w-lg scale-110 relative">
+                <div className="w-9/12 max-w-sm lg:max-w-md 2xl:max-w-lg scale-100 relative">
                   <Image
                     src={MyImage}
                     alt="err"
@@ -217,7 +217,7 @@ export default function Home() {
                 className="w-3/4 opacity-90 absolute -bottom-12 flex justify-end items-end"
                 once
               >
-                <span className="text-gray-300 w-full max-w-3xl text-base lg:text-2xl md:text-xl xl:text-3xl text-left text-pretty indent-24">
+                <span className="text-gray-300 w-full max-w-3xl tracking-normal text-base md:text-lg lg:text-2xl 2xl:text-3xl  text-left text-pretty indent-24">
                   {`With one year of expertise in mobile development, particularly
                   in React Native. Beyond mobile, I'm adept at crafting web
                   interfaces using ViteJs. Passionate about creating visually
