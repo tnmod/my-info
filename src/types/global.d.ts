@@ -13,3 +13,4 @@ type TContact = {
     href?: string;
 }
 
+type Viewport = "sm" | "md" | "lg" | "xl" | "2xl" | "none";

@@ -1,11 +1,9 @@
-import { useViewport } from "@/hooks/useViewport";
 
 export const getNumberByRatio = (number: number, ratio: number) => {
   return number * ratio;
 }
 
-export const convertToPx = (value: string[], resultType?: "s" | "n") => {
-  const { container } = useViewport();
+export const convertToPx = (value: string[], container: Viewport, resultType?: "s" | "n") => {
   let result: number = 0;
   switch (container) {
     case "sm":

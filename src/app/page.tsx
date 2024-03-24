@@ -20,36 +20,17 @@ import { convertToPx } from "@/utils/string.helper";
 //bg-[#B5C0D0]
 export default function Home() {
   const { scrollY } = useScroll();
+  const { container } = useViewport();
 
-  const { container, viewportWidth } = useViewport();
-  const [active, setActive] = useState<boolean>(false);
-  const generateTextVariants = (translateX: number): Variants => ({
-    initial: {
-      fontSize: "48px",
-      // translateY: -translateX * 0.8,
-    },
-    animate: {
-      fontSize:
-        viewportWidth * 0.05 > 166
-          ? "166px"
-          : viewportWidth * 0.05 < 42
-          ? "42px"
-          : viewportWidth * 0.05 + "px",
-      transition: {
-        duration: 0.1,
-        ease: "easeInOut",
-        delay: 0,
-      },
-      translateX: container === "sm" ? 0 : translateX,
-    },
-  });
 
   const initVariants: Variants = {
     initial: {
       translateY: "0",
+      borderRadius: "0%",
     },
     animate: {
       translateY: "-100%",
+      borderRadius: "50%",
       transition: {
         duration: 1,
         ease: "easeInOut",
@@ -57,16 +38,6 @@ export default function Home() {
       },
     },
   };
-
-  useEffect(() => {
-    const time = setTimeout(() => {
-      setActive(true);
-    }, 1000);
-
-    return () => {
-      clearTimeout(time);
-    };
-  }, []);
 
   return (
     <main className="scroll-smooth ">

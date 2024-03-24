@@ -55,12 +55,16 @@ export const useViewport = () => {
       let totalHeight = 0;
 
       for (let i = 0; i < elements.length; i++) {
-        totalHeight += elements[i].offsetHeight;
+        totalHeight += elements[i].getBoundingClientRect().height;
       }
       setTotalHeight(totalHeight);
     };
 
-    calculateTotalHeight();
+    if (document.readyState === "complete") {
+      calculateTotalHeight();
+    } else {
+      window.addEventListener("load", calculateTotalHeight);
+    }
 
     window.addEventListener("resize", calculateTotalHeight);
 
