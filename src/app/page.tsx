@@ -1,26 +1,21 @@
 "use client";
-import styles from "./styles.module.css";
 import Image from "next/image";
 import MyImage from "@/images/IMG_0619.jpg";
-import { useCallback, useEffect, useState } from "react";
 import { useViewport } from "@/hooks/useViewport";
-import { useImage } from "@/hooks/useImage";
-import { Variants, motion, useMotionValueEvent } from "framer-motion";
-import { ProgressBar } from "@/components/ProgressBar";
+import { Variants, motion } from "framer-motion";
 import { RootHeader } from "@/components/RootHeader";
 import Typewriter from "typewriter-effect";
-import { ParallaxText } from "@/components/ParallaxText";
-import { MarqueeText } from "@/components/Marquee";
-import { FrameworksList } from "@/constants/Keywords";
 import { AnimatedText } from "@/components/AnimatedText";
 import { useScroll } from "@/hooks/useScroll";
-import { Scrollbar } from "@/components/Scrollbar";
 import { AnimatedView } from "@/components/AnimatedView";
-import { convertToPx } from "@/utils/string.helper";
+import { MarqueeText } from "@/components/Marquee";
+import { FrameworksList } from "@/constants/Keywords";
+import { RandomText } from "@/components/RandomText";
+
 //bg-[#B5C0D0]
 export default function Home() {
   const { scrollY } = useScroll();
-  const { container } = useViewport();
+  const { container, viewportHeight, viewportWidth } = useViewport();
 
 
   const initVariants: Variants = {
@@ -41,6 +36,13 @@ export default function Home() {
 
   return (
     <main className="scroll-smooth ">
+      <Image
+        src={"/images/noise.png"}
+        width={viewportWidth}
+        height={viewportHeight}
+        alt="err"
+        className="fixed top-0 left-0 z-[10000] opacity-20 object-fill pointer-events-none"
+      />
       {/* <Scrollbar /> */}
       <motion.div
         variants={initVariants}
@@ -146,13 +148,14 @@ export default function Home() {
         </motion.div>
 
         {/*  About  */}
-        <div className="bg-neutral-900 rounded-tl-3xl rounded-tr-3xl">
+        <div className="bg-neutral-900 rounded-tl-3xl rounded-tr-3xl relative">
           <div className="h-16 w-screen" />
+
           <div
             id={"about"}
             className="w-screen bg-neutral-900 flex flex-col items-center"
           >
-            <div className="w-2/3 opacity-90 scale-110">
+            <div className="w-2/3 opacity-90 scale-110 z-20">
               <AnimatedText
                 once
                 text="ABOUT ME."
@@ -163,7 +166,10 @@ export default function Home() {
                 textColor="#cbd5e1"
               />
             </div>
-            <div className="w-full relative flex justify-center items-center flex-col mt-8">
+            <motion.div
+              animate={{ translateY: (scrollY - viewportHeight) * -0.2 }}
+              className="w-full relative flex justify-center items-center flex-col mt-8">
+
               <AnimatedView
                 duration={0.5}
                 delay={0.1}
@@ -172,6 +178,8 @@ export default function Home() {
                 once
               >
                 <div className="w-9/12 max-w-sm lg:max-w-md 2xl:max-w-lg scale-100 relative">
+                  <div className="w-full h-1/2 bg-yellow-400 mix-blend-exclusion absolute rounded-full blur-[128px] opacity-60 top-0 left-0 right-0 -z-50" />
+                  <div className="w-full h-1/2 bg-red-500 mix-blend-exclusion absolute rounded-full blur-[128px] opacity-60 bottom-0 left-0 right-0 -z-50" />
                   <Image
                     src={MyImage}
                     alt="err"
@@ -195,28 +203,39 @@ export default function Home() {
                   appealing and optimized user experiences across platforms.`}
                 </span>
               </AnimatedView>
-            </div>
+            </motion.div>
           </div>
           <div className="h-32 w-screen bg-neutral-900" />
         </div>
 
-        {/* <div className="w-screen bg-black">
+        <div className="w-screen bg-white">
           <MarqueeText keyWords={FrameworksList} />
-        </div> */}
+        </div>
 
         {/*  Skills  */}
-        <div id="skills" className="h-screen w-screen bg-neutral-900"></div>
+        <div id="skills" className="h-screen w-screen flex justify-center items-center bg-white">
+          <RandomText input="test" />
+        </div>
 
         {/*  Works  */}
-        <div id="works" className="bg-zinc-600">
+        <div id="works" className="min-h-screen w-screen bg-neutral-600 ">
+          <div className="w-5/6 h-[500px] relative" >
+            <Image
+              src={"/images/u2music.png"}
+              fill
+              loading="lazy"
+              className="object-contain"
+              alt="err" />
+          </div>
+        </div>
+
+        {/*  Contact  */}
+        <div id="contact" className="h-screen w-screen bg-orange-500">
           <div className="h-32 w-screen bg-neutral-900 rounded-b-3xl" />
           <div className="h-screen w-screen">
             <h1>test</h1>
           </div>
         </div>
-
-        {/*  Contact  */}
-        <div id="contact" className="h-screen w-screen bg-orange-500"></div>
 
         <motion.button
           whileHover={{ scale: 1.1 }}
@@ -233,6 +252,6 @@ export default function Home() {
           <p className="text-white">UP</p>
         </motion.button>
       </motion.div>
-    </main>
+    </main >
   );
 }
