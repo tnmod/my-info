@@ -213,12 +213,12 @@ export default function Home() {
         </div>
 
         {/*  Skills  */}
-        <div id="skills" className="h-screen w-screen flex justify-center items-center bg-white">
+        {/* <div id="skills" className="h-screen w-screen flex justify-center items-center bg-white">
           <RandomText input="test" />
-        </div>
+        </div> */}
 
         {/*  Works  */}
-        <div id="works" className="min-h-screen w-screen bg-neutral-600 ">
+        {/* <div id="works" className="min-h-screen w-screen bg-neutral-600 ">
           <div className="w-5/6 h-[500px] relative" >
             <Image
               src={"/images/u2music.png"}
@@ -227,15 +227,15 @@ export default function Home() {
               className="object-contain"
               alt="err" />
           </div>
-        </div>
+        </div> */}
 
         {/*  Contact  */}
-        <div id="contact" className="h-screen w-screen bg-orange-500">
+        {/* <div id="contact" className="h-screen w-screen bg-orange-500">
           <div className="h-32 w-screen bg-neutral-900 rounded-b-3xl" />
           <div className="h-screen w-screen">
             <h1>test</h1>
           </div>
-        </div>
+        </div> */}
 
         <motion.button
           whileHover={{ scale: 1.1 }}
