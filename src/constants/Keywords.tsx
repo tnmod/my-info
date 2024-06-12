@@ -14,7 +14,7 @@ import AndroidIcon from "../../public/logo/android.svg";
 import AppleIcon from "../../public/logo/apple.svg";
 import ReduxIcon from "../../public/logo/redux.svg";
 import Vercel from "../../public/logo/vercel.svg";
-
+import { ArrowsAltOutlined, BoxPlotOutlined, BugFilled, CheckOutlined, GithubFilled, LinkedinFilled, SettingFilled } from "@ant-design/icons";
 export const FrameworksList: { name?: string, icon?: any }[] = [
   {
     name: "ReactJs",
@@ -76,5 +76,25 @@ export const FrameworksList: { name?: string, icon?: any }[] = [
   {
     name: "GitHub",
     icon: GitHubIcon,
+  }
+]
+
+
+
+export const myInfo = [
+  {
+    icon: <LinkedinFilled className='text-xl text-black' />,
+    link: "https://www.linkedin.com/in/tnmod/",
+    title: "LinkedIn",
+  },
+  {
+    icon: <GithubFilled className='text-xl text-black' />,
+    link: "https://github.com/tnmod/",
+    title: "GitHub",
+  },
+  {
+    icon: <ArrowsAltOutlined className='text-xl text-black' />,
+    link: "https://nguyenphutin.vercel.app/",
+    title: "Portfolio",
   }
 ]

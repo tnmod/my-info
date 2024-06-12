@@ -20,12 +20,8 @@ const Index: Item[] = [
     href: "#about",
   },
   {
-    title: "Skills",
-    href: "#skills",
-  },
-  {
-    title: "Works",
-    href: "#works",
+    title: "Projects",
+    href: "#projects",
   },
   {
     title: "Contact",
@@ -47,7 +43,7 @@ export const RootHeader = () => {
   }, [scrollY]);
   return (
     <header>
-      <div className="absolute top-0 left-0 w-screen z-30">
+      <div className="absolute top-0 left-0 w-screen z-50">
         <div
           className={`w-screen items-start flex justify-between p-5 bg-transparent`}
         >
@@ -60,8 +56,7 @@ export const RootHeader = () => {
             initial={{ opacity: 0, translateY: 200 }}
             animate={{ opacity: 1, translateY: 0 }}
             transition={{ duration: 1, ease: "easeInOut", delay: 1.8 }}
-            className={"w-auto h-auto flex flex-col"}
-          >
+            className={"w-auto h-auto flex flex-col"}>
             <ul className="flex flex-col items-end">
               {Index.map((item, index) => {
                 return (
@@ -89,8 +84,7 @@ export const RootHeader = () => {
       </div>
       <motion.button
         onClick={() => scrollY > 300 && setActive(!active)}
-        className={`fixed z-50 m-5 ${scrollY > 300 ? "cursor-pointer" : "cursor-default"
-          }`}
+        className={`fixed z-50 m-5 ${scrollY > 300 ? "cursor-pointer" : "cursor-default"}`}
         initial={{ opacity: 0 }}
         animate={{ opacity: scrollY > 300 ? 1 : 0 }}
         transition={{ duration: 0.3 }}
@@ -135,15 +129,16 @@ export const RootHeader = () => {
           />
         </div>
       </motion.button>
-      <motion.div
-        className={`fixed top-0 left-0 w-screen h-screen p-2 max-w-3xl z-40 pr-2 justify-center items-center`}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: active ? 1 : 0, x: active ? 0 : -100 }}
-        transition={{ duration: 0.5, ease: "easeOut", velocity: 100 }}
-      >
-        {
-          active && (
-            <div className="w-full relative flex flex-col flex-1 h-full bg-black rounded-tr-2xl rounded-xl">
+      {
+        active && (
+          <motion.div
+            className={`fixed top-0 left-0 w-screen h-screen p-2 max-w-3xl z-40 pr-2 justify-center items-center`}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: active ? 1 : 0, x: active ? 0 : -100 }}
+            transition={{ duration: 0.5, ease: "easeOut", velocity: 100 }}
+          >
+
+            <div className="w-full relative flex flex-col flex-1 h-full bg-black rounded-tr-2xl rounded-xl ">
               <ul className="absolute flex flex-col items-start w-full h-full justify-center p-24">
                 {Index.map((item, index) => {
                   return (
@@ -189,9 +184,10 @@ export const RootHeader = () => {
                 <AnimatedText text="© Folio 2024" variants="little" textColor="#575656" once />
               </motion.div>
             </div>
-          )
-        }
-      </motion.div>
+
+          </motion.div>
+        )
+      }
     </header >
   );
 };

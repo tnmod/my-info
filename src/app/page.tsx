@@ -9,14 +9,24 @@ import { AnimatedText } from "@/components/AnimatedText";
 import { useScroll } from "@/hooks/useScroll";
 import { AnimatedView } from "@/components/AnimatedView";
 import { MarqueeText } from "@/components/Marquee";
-import { FrameworksList } from "@/constants/Keywords";
+import { FrameworksList, myInfo } from "@/constants/Keywords";
 import { RandomText } from "@/components/RandomText";
+import { useEffect, useRef, useState } from "react";
+import { Project } from "@/components/Project";
 
 //bg-[#B5C0D0]
 export default function Home() {
   const { scrollY } = useScroll();
-  const { container, viewportHeight, viewportWidth } = useViewport();
+  const { container, viewportHeight } = useViewport();
+  const [active, setActive] = useState(false);
 
+  useEffect(() => {
+    if (scrollY > viewportHeight * 1.5) {
+      !active && setActive(true);
+    } else {
+      active && setActive(false);
+    }
+  }, [scrollY]);
 
   const initVariants: Variants = {
     initial: {
@@ -34,15 +44,17 @@ export default function Home() {
     },
   };
 
+
   return (
-    <main className="scroll-smooth ">
-      <Image
-        src={"/images/noise.png"}
-        width={viewportWidth}
-        height={viewportHeight}
-        alt="err"
-        className="fixed top-0 left-0 z-[10000] opacity-20 object-fill pointer-events-none"
-      />
+    <main className="scroll-smooth">
+      <div className="fixed top-0 left-0 z-[10000] opacity-20 pointer-events-none bg-slate-800">
+        <Image
+          src={"/images/noise.png"}
+          alt="err"
+          objectFit="cover"
+          layout="fill"
+        />
+      </div>
       {/* <Scrollbar /> */}
       <motion.div
         variants={initVariants}
@@ -55,6 +67,7 @@ export default function Home() {
       </motion.div>
       {/*  /  */}
       <motion.div
+        style={{ zIndex: 10 }}
         initial={{ opacity: 0.4 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5, ease: "easeInOut", delay: 2, once: true }}
@@ -64,7 +77,7 @@ export default function Home() {
           className="relative bg-white"
           style={{
             translateY: scrollY * 0.6,
-            zIndex: -1000,
+            zIndex: active ? -1000 : 2,
           }}
         >
           <div className="relative flex h-screen w-screen flex-col justify-end sm:justify-center sm:items-center items-start bg-white p-5">
@@ -148,7 +161,7 @@ export default function Home() {
         </motion.div>
 
         {/*  About  */}
-        <div className="bg-neutral-900 rounded-tl-3xl rounded-tr-3xl relative">
+        <div className="bg-neutral-900 rounded-tl-3xl rounded-tr-3xl relative  z-30">
           <div className="h-16 w-screen" />
 
           <div
@@ -206,36 +219,32 @@ export default function Home() {
             </motion.div>
           </div>
           <div className="h-32 w-screen bg-neutral-900" />
-        </div>
-
-        <div className="w-screen bg-white">
           <MarqueeText keyWords={FrameworksList} />
         </div>
 
-        {/*  Skills  */}
-        {/* <div id="skills" className="h-screen w-screen flex justify-center items-center bg-white">
-          <RandomText input="test" />
-        </div> */}
-
-        {/*  Works  */}
-        {/* <div id="works" className="min-h-screen w-screen bg-neutral-600 ">
-          <div className="w-5/6 h-[500px] relative" >
-            <Image
-              src={"/images/u2music.png"}
-              fill
-              loading="lazy"
-              className="object-contain"
-              alt="err" />
+        <div id="projects" className="h-screen w-screen flex bg-black z-0">
+          <div className="top-0 left-0 w-screen" style={{ zIndex: 0, position: "fixed" }}>
+            <Project />
           </div>
-        </div> */}
+        </div>
 
-        {/*  Contact  */}
-        {/* <div id="contact" className="h-screen w-screen bg-orange-500">
-          <div className="h-32 w-screen bg-neutral-900 rounded-b-3xl" />
-          <div className="h-screen w-screen">
-            <h1>test</h1>
+        <div id="contact" className="w-screen bg-white z-50 flex justify-center items-center relative">
+          <div className="flex py-8 container ">
+            <div className='flex-1 flex justify-center items-center flex-col'>
+              <p className='text-4xl font-bold text-black'>Nguyễn Phú Tín<span className='text-accent-2 font-medium text-base'> ©2024</span></p>
+            </div>
+            <div className='flex-1 flex flex-col justify-center items-center gap-4'>
+              {
+                myInfo.map((data, index) => (
+                  <a href={data.link} key={index} className='flex items-center'>
+                    {data.icon}
+                    <p className='text-xl font-bold ml-2 text-black'>{data.title}</p>
+                  </a>
+                ))
+              }
+            </div>
           </div>
-        </div> */}
+        </div>
 
         <motion.button
           whileHover={{ scale: 1.1 }}
