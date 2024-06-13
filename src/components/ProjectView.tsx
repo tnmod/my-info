@@ -54,11 +54,11 @@ export const ProjectView = () => {
       <a
         href={project.url}
         key={project.title}
+        style={{ width: viewportWidth / (viewportWidth > 1279 ? 3.6 : 2.5), height: ((viewportWidth / (viewportWidth > 1279 ? 3.6 : 2.5)) * 9) / 16 }}
         className='flex-1 group flex rounded-xl justify-center items-center overflow-hidden relative'>
         <Image
-          width={viewportWidth / (2.5)}
-          height={((viewportWidth / 2.5) * 9) / 16}
-          objectFit="cover"
+          fill
+          style={{ objectFit: 'cover' }}
           src={project.image}
           alt={project.title} />
         <div className='absolute top-0 left-0 bg-gradient-to-t from-gray-900 w-full h-full flex items-end p-4'>
@@ -76,11 +76,11 @@ export const ProjectView = () => {
       <a
         href={project.url}
         key={project.title}
+        style={{ width: viewportWidth / 2.5, height: ((viewportWidth / 2.5) * 9) / 16 }}
         className='flex-1 group flex rounded-xl justify-start overflow-hidden relative'>
         <Image
           width={viewportWidth / (2.5)}
           height={((viewportWidth / 2.5) * 9) / 16}
-          objectFit="cover"
           src={project.image}
           alt={project.title} />
         <div className="bg-slate-400 flex-1">
