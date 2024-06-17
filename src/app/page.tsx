@@ -223,7 +223,7 @@ export default function Home() {
         </div>
 
         <div id="projects" className="min-h-screen w-screen flex bg-black z-0">
-          <div className="top-0 left-0 w-screen" style={{ zIndex: 0, position: "fixed" }}>
+          <div className="top-0 left-0 w-screen xl:fixed" style={{ zIndex: 0}}>
             <Project />
           </div>
         </div>

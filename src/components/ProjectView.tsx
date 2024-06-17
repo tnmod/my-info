@@ -54,8 +54,7 @@ export const ProjectView = () => {
       <a
         href={project.url}
         key={project.title}
-        style={{ width: viewportWidth / (viewportWidth > 1279 ? 3.6 : 2.5), height: ((viewportWidth / (viewportWidth > 1279 ? 3.6 : 2.5)) * 9) / 16 }}
-        className='flex-1 group flex rounded-xl justify-center items-center overflow-hidden relative'>
+        className='group flex rounded-xl justify-center items-center overflow-hidden relative w-full aspect-16/9'>
         <Image
           fill
           style={{ objectFit: 'cover' }}
@@ -70,38 +69,12 @@ export const ProjectView = () => {
     )
   }
 
-  const itemSm = (project: ProjectProps) => {
-
-    return (
-      <a
-        href={project.url}
-        key={project.title}
-        style={{ width: viewportWidth / 2.5, height: ((viewportWidth / 2.5) * 9) / 16 }}
-        className='flex-1 group flex rounded-xl justify-start overflow-hidden relative'>
-        <Image
-          width={viewportWidth / (2.5)}
-          height={((viewportWidth / 2.5) * 9) / 16}
-          src={project.image}
-          alt={project.title} />
-        <div className="bg-slate-400 flex-1">
-          <p className='text-lg lg:text-2xl 2xl:text-4xl font-bold text-gray-200'>Project: {project.title}</p>
-          {
-            project.member && <p className='text-lg lg:text-2xl 2xl:text-4xl font-bold text-gray-200'>Team size: {project.member}</p>
-          }
-          {
-            project.position && <p className='text-lg lg:text-2xl 2xl:text-4xl font-bold text-gray-200'>position: {project.position}</p>
-          }
-        </div>
-      </a>
-    )
-  }
-
   return (
     <div
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
       className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
-      {projects.map(viewportWidth > 1023 ? item : itemSm)}
+      {projects.map(item)}
       <motion.div
         animate={{
           opacity: hover ? 1 : 0,
