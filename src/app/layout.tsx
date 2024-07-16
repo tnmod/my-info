@@ -1,7 +1,8 @@
-import type { Metadata } from "next";
-import { Inter, Roboto, Roboto_Mono } from "next/font/google";
+import type {Metadata} from "next";
+import {Inter, Roboto, Roboto_Mono} from "next/font/google";
 import "./globals.css";
-import { SmoothScroll } from "@/components/SmoothScroll";
+import {SmoothScroll} from "@/components/SmoothScroll";
+import {Analytics} from "@vercel/analytics/react"
 
 const roboto = Roboto({
   weight: ["400", "700"],
@@ -38,6 +39,7 @@ export default function RootLayout({
         className={`${inter.variable} ${roboto_mono.variable} ${roboto.className}`}
       >
         <SmoothScroll>{children}</SmoothScroll>
+        <Analytics/>
       </body>
     </html>
   );
