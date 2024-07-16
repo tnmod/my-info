@@ -73,9 +73,6 @@ export const useViewport = () => {
     };
   }, []);
 
-  console.log("viewportHeight", viewportHeight);
-  
-
   return {
     viewportHeight,
     viewportWidth,

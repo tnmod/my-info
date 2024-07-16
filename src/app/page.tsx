@@ -1,23 +1,22 @@
 "use client";
 import Image from "next/image";
 import MyImage from "@/images/IMG_0619.jpg";
-import { useViewport } from "@/hooks/useViewport";
-import { Variants, motion } from "framer-motion";
-import { RootHeader } from "@/components/RootHeader";
+import {useViewport} from "@/hooks/useViewport";
+import {motion, Variants} from "framer-motion";
+import {RootHeader} from "@/components/RootHeader";
 import Typewriter from "typewriter-effect";
-import { AnimatedText } from "@/components/AnimatedText";
-import { useScroll } from "@/hooks/useScroll";
-import { AnimatedView } from "@/components/AnimatedView";
-import { MarqueeText } from "@/components/Marquee";
-import { FrameworksList, myInfo } from "@/constants/Keywords";
-import { RandomText } from "@/components/RandomText";
-import { useEffect, useRef, useState } from "react";
-import { Project } from "@/components/Project";
+import {AnimatedText} from "@/components/AnimatedText";
+import {useScroll} from "@/hooks/useScroll";
+import {AnimatedView} from "@/components/AnimatedView";
+import {MarqueeText} from "@/components/Marquee";
+import {FrameworksList, myInfo} from "@/constants/Keywords";
+import {useEffect, useState} from "react";
+import {Project} from "@/components/Project";
 
 //bg-[#B5C0D0]
 export default function Home() {
   const { scrollY } = useScroll();
-  const { container, viewportHeight } = useViewport();
+  const {container, viewportHeight, viewportWidth} = useViewport();
   const [active, setActive] = useState(false);
 
   useEffect(() => {
@@ -51,8 +50,7 @@ export default function Home() {
         <Image
           src={"/images/noise.png"}
           alt="err"
-          objectFit="cover"
-          layout="fill"
+          fill
         />
       </div>
       {/* <Scrollbar /> */}
@@ -73,10 +71,10 @@ export default function Home() {
         transition={{ duration: 0.5, ease: "easeInOut", delay: 2, once: true }}
       >
         <RootHeader />
-        <motion.div
+        <div
           className="relative bg-white"
           style={{
-            translateY: scrollY * 0.6,
+            transform: `translateY(${viewportWidth > 768 ? scrollY * 0.6 : 0}px)`,
             zIndex: active ? -1000 : 2,
           }}
         >
@@ -85,28 +83,34 @@ export default function Home() {
               style={{ opacity: 4 - scrollY / 200 }}
               className="flex flex-col z-10"
             >
-              <AnimatedText
-                text="HI THERE, I'M"
-                textTranform
-                textColor="#00000099"
-                textTranslateX={container === "sm" ? 0 : -50}
-                containerDelay={1.8}
-                textScaleDuration={0.6}
-                duration={0.6}
-                delay={0.05}
-                once
-              />
-              <AnimatedText
-                text="TIN NGUYEN."
-                textTranform
-                textColor="#00000099"
-                textTranslateX={container === "sm" ? 0 : 50}
-                duration={0.6}
-                textScaleDuration={0.6}
-                delay={0.05}
-                containerDelay={1.8}
-                once
-              />
+              {
+                viewportWidth > 0 && (
+                  <>
+                    <AnimatedText
+                      text="HI THERE, I'M"
+                      textTranform
+                      textColor="#00000099"
+                      textTranslateX={container === "sm" ? 0 : -50}
+                      containerDelay={1.8}
+                      textScaleDuration={0.6}
+                      duration={0.6}
+                      delay={0.05}
+                      once
+                    />
+                    <AnimatedText
+                      text="TIN NGUYEN."
+                      textTranform
+                      textColor="#00000099"
+                      textTranslateX={container === "sm" ? 0 : 50}
+                      duration={0.6}
+                      textScaleDuration={0.6}
+                      delay={0.05}
+                      containerDelay={1.8}
+                      once
+                    />
+                  </>
+                )
+              }
             </div>
             <div className="sm:absolute sm:bottom-4 sm:left-4 z-10">
               <Typewriter
@@ -158,109 +162,120 @@ export default function Home() {
             </div>
           </div>
           <div className="h-24 w-screen" />
-        </motion.div>
+        </div>
 
         {/*  About  */}
-        <div className="bg-neutral-900 rounded-tl-3xl rounded-tr-3xl relative  z-30">
-          <div className="h-16 w-screen" />
-
+        <div className={"bg-white "}>
           <div
-            id={"about"}
-            className="w-screen bg-neutral-900 flex flex-col items-center"
-          >
-            <div className="w-2/3 opacity-90 scale-110 z-20">
-              <AnimatedText
-                once
-                text="ABOUT ME."
-                delay={0.04}
-                duration={0.6}
-                containerDelay={0.1}
-                variants="large"
-                textColor="#cbd5e1"
-              />
-            </div>
-            <motion.div
-              animate={{ translateY: (scrollY - viewportHeight) * -0.2 }}
-              className="w-full relative flex justify-center items-center flex-col mt-8">
+            className="bg-neutral-900 rounded-tl-3xl rounded-tr-3xl relative z-30">
+            <div className="h-16 w-screen"/>
+            <div
+              id={"about"}
+              className="w-screen bg-neutral-900 flex flex-col items-center"
+            >
+              <div className="w-2/3 opacity-90 scale-110 z-20">
+                <AnimatedText
+                  once
+                  text="ABOUT ME."
+                  delay={0.04}
+                  duration={0.6}
+                  containerDelay={0.1}
+                  variants="large"
+                  textColor="#cbd5e1"
+                />
+              </div>
+              <div
+                style={{
+                  transform: `translateY(${viewportWidth > 786 ? ((scrollY - viewportHeight) * -0.2) : 0}px)`,
+                }}
+                className="w-full relative flex justify-center items-center flex-col mt-8">
 
-              <AnimatedView
-                duration={0.5}
-                delay={0.1}
-                translateY={{ from: 50, to: 0 }}
-                className="w-full flex justify-center items-center mt-2"
-                once
-              >
-                <div className="w-9/12 max-w-sm lg:max-w-md 2xl:max-w-lg scale-100 relative">
-                  <div className="w-full h-1/2 bg-yellow-400 mix-blend-exclusion absolute rounded-full blur-[128px] opacity-60 top-0 left-0 right-0 -z-50" />
-                  <div className="w-full h-1/2 bg-red-500 mix-blend-exclusion absolute rounded-full blur-[128px] opacity-60 bottom-0 left-0 right-0 -z-50" />
-                  <Image
-                    src={MyImage}
-                    alt="err"
-                    priority
-                    className="overflow-hidden rounded-lg object-contain"
-                  />
-                  <div className="bg-gradient-to-t from-neutral-900 from-20% via-transparent w-full h-full z-0 absolute top-0 left-0 overflow-hidden rounded-lg" />
-                </div>
-              </AnimatedView>
-              <AnimatedView
-                duration={0.6}
-                delay={0.1}
-                translateY={{ from: -50, to: -100 }}
-                className="w-3/4 opacity-90 absolute -bottom-12 flex justify-end items-end"
-                once
-              >
-                <span className="text-gray-300 w-full max-w-3xl tracking-normal text-base md:text-lg lg:text-2xl 2xl:text-3xl  text-left text-pretty indent-24">
+                <AnimatedView
+                  duration={0.5}
+                  delay={0.1}
+                  translateY={{from: 50, to: 0}}
+                  className="w-full flex justify-center items-center mt-2"
+                  once
+                >
+                  <div className="w-9/12 max-w-sm lg:max-w-md 2xl:max-w-lg scale-100 relative">
+                    <div
+                      className="w-full h-1/2 bg-yellow-400 mix-blend-exclusion absolute rounded-full blur-[128px] opacity-60 top-0 left-0 right-0 -z-50"/>
+                    <div
+                      className="w-full h-1/2 bg-red-500 mix-blend-exclusion absolute rounded-full blur-[128px] opacity-60 bottom-0 left-0 right-0 -z-50"/>
+                    <Image
+                      src={MyImage}
+                      alt="err"
+                      priority
+                      className="overflow-hidden rounded-lg object-contain"
+                    />
+                    <div
+                      className="bg-gradient-to-t from-neutral-900 from-20% via-transparent w-full h-full z-0 absolute top-0 left-0 overflow-hidden rounded-lg"/>
+                  </div>
+                </AnimatedView>
+                <AnimatedView
+                  duration={0.6}
+                  delay={0.1}
+                  translateY={{from: -50, to: -100}}
+                  className="w-3/4 opacity-90 absolute -bottom-12 flex justify-end items-end"
+                  once
+                >
+                <span
+                  className="text-gray-300 w-full max-w-3xl tracking-normal text-base md:text-lg lg:text-2xl 2xl:text-3xl  text-left text-pretty indent-24">
                   {`With one year of expertise in mobile development, particularly
                   in React Native. Beyond mobile, I'm adept at crafting web
                   interfaces using ViteJs. Passionate about creating visually
                   appealing and optimized user experiences across platforms.`}
                 </span>
-              </AnimatedView>
-            </motion.div>
+                </AnimatedView>
+              </div>
+            </div>
+            <div className="h-32 w-screen bg-neutral-900"/>
+            <MarqueeText keyWords={FrameworksList}/>
           </div>
-          <div className="h-32 w-screen bg-neutral-900" />
-          <MarqueeText keyWords={FrameworksList} />
         </div>
-
+        {/*  Projects  */}
         <div id="projects" className="min-h-screen w-screen flex bg-black z-0">
-          <div className="top-0 left-0 w-screen xl:fixed" style={{ zIndex: 0}}>
-            <Project />
+          <div className="top-0 left-0 w-screen xl:fixed" style={{zIndex: 0}}>
+            <Project/>
           </div>
         </div>
 
         <div id="contact" className="w-screen bg-white z-50 flex justify-center items-center relative">
-          <div className="flex py-8 container ">
+          <div className="flex py-8 container mx-auto flex-col md:flex-row">
             <div className='flex-1 flex justify-center items-center flex-col'>
-              <p className='text-4xl font-bold text-black'>Nguyễn Phú Tín<span className='text-accent-2 font-medium text-base'> ©2024</span></p>
+              <p className='text-2xl md:text-4xl font-bold text-black'>Nguyễn Phú Tín<span
+                className='text-accent-2 font-medium text-base'> ©2024</span></p>
             </div>
-            <div className='flex-1 flex flex-col justify-center items-center gap-4'>
-              {
-                myInfo.map((data, index) => (
-                  <a href={data.link} key={index} className='flex items-center'>
-                    {data.icon}
-                    <p className='text-xl font-bold ml-2 text-black'>{data.title}</p>
-                  </a>
-                ))
-              }
+            <div className={"flex-1 flex justify-center mt-2 md:mt-0"}>
+              <div className='flex md:flex-col justify-center items-center gap-4 flex-row'>
+                {
+                  myInfo.map((data, index) => (
+                    <a href={data.link} key={index} className='flex items-center'>
+                      {data.icon}
+                      <p className='text-base md:text-xl font-bold ml-2 text-black'>{data.title}</p>
+                    </a>
+                  ))
+                }
+              </div>
             </div>
           </div>
         </div>
 
         <motion.button
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
+          whileHover={{scale: 1.1}}
+          whileTap={{scale: 0.9}}
           style={{
             opacity: scrollY * 0.002,
           }}
-          transition={{ duration: 0, ease: "easeInOut", delay: 0 }}
+          transition={{duration: 0, ease: "easeInOut", delay: 0}}
           onClick={() => {
-            window.scrollTo({ top: 0, behavior: "smooth" });
+            window.scrollTo({top: 0, behavior: "smooth"});
           }}
           className="p-3 rounded-xl backdrop-blur-xl w-16 h-16 fixed bottom-5 right-5 border-2 border-[#00000010]"
         >
           <p className="text-white">UP</p>
         </motion.button>
       </motion.div>
-    </main >
+    </main>
   );
 }

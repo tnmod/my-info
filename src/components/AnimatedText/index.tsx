@@ -1,6 +1,6 @@
-import { useViewport } from "@/hooks/useViewport";
-import { Variants, motion, useAnimation, useInView } from "framer-motion";
-import { ReactNode, useEffect, useRef } from "react"; // Import ReactNode
+import {useViewport} from "@/hooks/useViewport";
+import {motion, useAnimation, useInView, Variants} from "framer-motion";
+import {useEffect, useRef} from "react"; // Import ReactNode
 
 interface AnimatedTextProps {
   text: string;
@@ -52,26 +52,16 @@ export const AnimatedText = ({
   const ref = useRef<HTMLDivElement>(null);
   const inViewRef = useInView(ref, { amount, once });
   const controls = useAnimation();
-  const { container } = useViewport();
+  const {viewportWidth, container} = useViewport();
+  console.log()
 
-  const fontSize = () => {
-    switch (container) {
-      case "xl":
-        return "96px";
-      case "lg":
-        return "87px";
-      case "md":
-        return "64px";
-      case "sm":
-        return "52px";
-      default:
-        return "120px";
-    }
-  };
-
+  const size = () => {
+    let _s = viewportWidth / 10 > 120 ? 120 : viewportWidth / 10
+    return _s.toString() + "px"
+  }
   const generateTextVariants = (translateX: number): Variants => ({
     animate: {
-      fontSize: fontSize(),
+      fontSize: size(),
       lineHeight: "1",
       transition: {
         duration: textScaleDuration,

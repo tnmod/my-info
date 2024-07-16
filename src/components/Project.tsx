@@ -11,7 +11,7 @@ export const Project = () => {
 
 
   return (
-    <div className='p-24 flex flex-col gap-8'>
+    <div className='p-6 md:p-12 lg:p-24 flex flex-col gap-8'>
       <AnimatedText
         once
         text="MY PROJECTS."

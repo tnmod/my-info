@@ -43,7 +43,7 @@ export const RootHeader = () => {
   }, [scrollY]);
   return (
     <header>
-      <div className="absolute top-0 left-0 w-screen z-50">
+      <div className="absolute top-0 left-0 w-screen " style={{zIndex:100000}}>
         <div
           className={`w-screen items-start flex justify-between p-5 bg-transparent`}
         >
